@@ -34,6 +34,7 @@ public:
 	bool is_balance();
 	int depth();
 	int minDepth();
+
 private:
 	void init_tree(TreeNode** t);
   	void preorder(TreeNode* t); 	
@@ -42,7 +43,9 @@ private:
 	int depth(TreeNode* tree);
 	int minDepth(TreeNode* tree);
 	bool is_balance(TreeNode* tree, int* depth);
+
 	TreeNode* tree;
+
 	int m_depth;
 };
 
@@ -232,4 +235,20 @@ int BinaryTree::get_binary_tree_width() {
 	}
 
 	return width;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//some bianry tree algorithms that not belong to the class BinaryTree above
+typedef TreeNode *Tree;
+
+Tree invert_binary_tree(Tree &t) {
+	if(NULL == t) return NULL;
+	
+	t->lchild = invert_binary_tree(t->lchild);
+	t->rchild = invert_binary_tree(t->rchild);
+
+	Tree temp = t->lchild;
+	t->lchild = t->rchild;
+	t->rchild = temp;
+
+	return t;
 }
